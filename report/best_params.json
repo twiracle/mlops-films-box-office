@@ -1,0 +1,1 @@
+{"n_estimators": 857, "learning_rate": 0.045309611206922125, "num_leaves": 39, "max_depth": 9, "max_bin": 79, "min_data_in_leaf": 38, "bagging_fraction": 0.7830367186846483, "bagging_freq": 3, "lambda_l1": 3, "lambda_l2": 6, "min_split_gain": 2, "colsample_bytree": 0.6636806512095652, "objective": "mae", "verbosity": -1, "random_state": 42}

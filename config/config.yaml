@@ -1,0 +1,96 @@
+preprocessing:
+    map_columns:
+        month_names:
+            'января': 'январь'
+            'февраля': 'февраль'
+            'марта': 'март'
+            'апреля': 'апрель'
+            'мая': 'май'
+            'июня': 'июнь'
+            'июля': 'июль'
+            'августа': 'август'
+            'сентября': 'сентябрь'
+            'октября': 'октябрь'
+            'ноября': 'ноябрь'
+            'декабря': 'декабрь'
+        month_numbers:
+            '1': 'январь'
+            '2': 'февраль'
+            '3': 'март'
+            '4': 'апрель'
+            '5': 'май'
+            '6': 'июнь'
+            '7': 'июль'
+            '8': 'август'
+            '9': 'сентябрь'
+            '10': 'октябрь'
+            '11': 'ноябрь'
+            '12': 'декабрь'
+    change_cols:
+        money_cols: ['box_office_usa', 'box_office_world', 'budget']
+    change_type_first:
+        box_office_usa: float
+        box_office_world: float
+        production_year: int
+        rating: float
+        budget: float
+    change_type_last:
+        director: 'category'
+        age_rating: 'category'
+        main_genre: 'category'
+        month: 'category'
+    drop_na_cols: 
+        drop_first: ['release_date', 'rating']
+        drop_last: ['target', 'director', 'cast']
+    change_values_to_none: 
+        box_office_usa: ''
+        box_office_world: ''
+        production_year: 'symbols'
+        rating: '–'
+        budget: ''
+        cast: '[]'
+        director: '—'
+    fill_na_cols: 
+        box_office_usa: 0
+        box_office_world: 0
+        age_rating: 'undefined'
+        budget: 'mean'
+        rating: 'mean'
+    drop_columns: ['title', 'release_date', 'genre', 'box_office_usa', 'box_office_world', 'cast', 'target']
+    data_path: ../data/raw/kinopoisk_films.csv
+    clean_data_path: ../data/processed/data_clean.csv
+    train_data_path: ../data/processed/train.csv
+    val_data_path: ../data/processed/val.csv
+    test_data_path: ../data/processed/test.csv
+    target_column: target_log
+    test_size: 0.2
+    val_size: 0.16
+    unique_values_path: ../data/processed/unique_values.json
+    fillna_values_path: ../data/processed/fillna_values.json
+    actors_fame_path: ../data/processed/actors_fame.json
+    top_directors_path: ../data/processed/top_directors.json
+    director_film_count_path: ../data/processed/film_count.json
+    random_state: 42
+    
+train:
+    n_trials: 50
+    n_folds: 5
+    random_state: 42
+    target_column: target_log
+    category_cols: ['director', 'age_rating', 'main_genre', 'month']
+    model_path: ../models/model.joblib
+    study_path: ../models/study.joblib
+    metrics_path: ../report/metrics.json
+    params_path: ../report/best_params.json
+    train_data_path: ../data/processed/train.csv
+    val_data_path: ../data/processed/val.csv
+    test_data_path: ../data/processed/test.csv
+    fillna_values_path: ../data/processed/fillna_values.json
+
+endpoints:
+#    training: 'http://fastapi:8000/training'
+#    prediction_input: 'http://fastapi:8000/prediction_input'
+#    prediction_file: 'http://fastapi:8000/prediction_file'
+    training: 'http://localhost:80/training'
+    prediction_input: 'http://localhost:80/prediction_input'
+    prediction_file: 'http://localhost:80/prediction_file'
